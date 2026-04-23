@@ -21,6 +21,7 @@ import {
   Quote
 } from 'lucide-react';
 import { getVerseOfTheDay } from './services/geminiService';
+import ChurchMap from './components/ChurchMap';
 
 interface VerseData {
   verse: string;
@@ -426,6 +427,10 @@ export default function App() {
             <h3 className="text-2xl font-black mb-4">Contribua</h3>
             <p className="text-gray-500 font-medium mb-8 leading-relaxed">Sua oferta ajuda a manter nossos ministérios e ações sociais ativos.</p>
             <button className="text-blue-500 font-black underline underline-offset-8 text-lg">Dízimos & Ofertas (PIX)</button>
+          </div>
+
+          <div className="lg:col-span-3 h-[500px] mt-8">
+            <ChurchMap />
           </div>
         </div>
       </section>
