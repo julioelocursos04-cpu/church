@@ -18,7 +18,9 @@ import {
   Instagram, 
   Facebook, 
   Youtube,
-  Quote
+  Quote,
+  HandHeart,
+  Coins
 } from 'lucide-react';
 import { getVerseOfTheDay } from './services/geminiService';
 import ChurchMap from './components/ChurchMap';
@@ -56,6 +58,7 @@ export default function App() {
     { name: 'Sobre Nós', id: 'about' },
     { name: 'Cultos', id: 'schedule' },
     { name: 'Eventos', id: 'events' },
+    { name: 'Dízimos', id: 'donations' },
     { name: 'Oração', id: 'prayer' },
     { name: 'Contato', id: 'contact' },
   ];
@@ -381,6 +384,82 @@ export default function App() {
         </div>
       </section>
 
+      {/* Tithes and Offerings Section */}
+      <section id="donations" className="py-32 px-6 bg-white/30 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-[#B89B72]/5 blur-[120px] -z-10 rounded-full"></div>
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
+          <div className="flex-1 space-y-10">
+            <div>
+              <span className="text-[#B89B72] uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Princípios de Fé</span>
+              <h2 className="text-5xl font-serif font-light text-[#1A202C] italic leading-tight">A Alegria de <br /><span className="font-normal text-[#B89B72] not-italic">Semear e Contribuir</span></h2>
+            </div>
+            
+            <div className="space-y-6 text-lg font-light text-gray-500 leading-relaxed italic border-l border-[#B89B72]/20 pl-8">
+              <p>
+                "Cada um contribua segundo propôs no seu coração; não com tristeza, ou por necessidade; porque Deus ama ao que dá com alegria." — 2 Co 9:7
+              </p>
+              <p className="not-italic text-base">
+                O seu dízimo e oferta são formas de adoração e reconhecimento da soberania de Deus sobre nossas vidas. Através de sua fidelidade, mantemos os ministérios, cuidamos da casa do Senhor e estendemos as mãos aos que mais precisam em nossa comunidade.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-6 items-start">
+              <div className="flex-1 p-8 glass-panel rounded-[40px] soft-shadow border-white/80 group hover:bg-white transition-all duration-500">
+                <div className="w-12 h-12 bg-[#B89B72]/10 rounded-2xl flex items-center justify-center mb-6 text-[#B89B72]">
+                  <HandHeart className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-serif italic mb-2">Impacto Social</h3>
+                <p className="text-sm text-gray-400">Suas contribuições apoiam famílias carentes e projetos de assistência em Cidade Esperança.</p>
+              </div>
+              <div className="flex-1 p-8 glass-panel rounded-[40px] soft-shadow border-white/80 group hover:bg-white transition-all duration-500">
+                <div className="w-12 h-12 bg-[#B89B72]/10 rounded-2xl flex items-center justify-center mb-6 text-[#B89B72]">
+                  <Coins className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-serif italic mb-2">Reino em Expansão</h3>
+                <p className="text-sm text-gray-400">Investimento na manutenção do templo e na propagação do Evangelho através de nossos eventos.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex-1 w-full max-w-md">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="glass-panel p-12 md:p-16 rounded-[64px] soft-shadow border-white border-8 shadow-2xl relative"
+            >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-[#1A202C] rounded-full flex items-center justify-center text-white shadow-xl">
+                <Quote className="w-8 h-8 opacity-20" />
+              </div>
+              
+              <div className="text-center space-y-10">
+                <div>
+                  <h3 className="text-[10px] uppercase tracking-[0.4em] font-black text-[#B89B72] mb-4">Contribuição Online</h3>
+                  <div className="w-24 h-24 vibrant-gradient rounded-[40px] shadow-2xl mx-auto flex items-center justify-center opacity-10"></div>
+                  <div className="mt-[-60px]">
+                    <span className="text-6xl font-serif italic text-gray-900 leading-none">PIX</span>
+                  </div>
+                </div>
+
+                <div className="p-6 bg-white/50 rounded-3xl border border-black/5 space-y-2">
+                  <span className="text-[10px] uppercase font-black text-gray-400 tracking-[0.2em]">Chave de Acesso</span>
+                  <p className="text-lg font-bold text-gray-700 break-all">contato@igrejahaesperanca.com.br</p>
+                </div>
+
+                <button className="w-full bg-[#B89B72] text-white font-bold py-6 rounded-[32px] text-xs uppercase tracking-[0.4em] shadow-2xl hover:bg-[#a68a5f] hover:-translate-y-1 transition-all active:translate-y-0 group">
+                  Copiar Chave PIX
+                  <span className="block text-[8px] opacity-60 font-light mt-1">Ou Escanear QR Code</span>
+                </button>
+
+                <p className="text-[10px] text-gray-400 uppercase tracking-widest leading-relaxed">
+                  Banco do Brasil | Ag: 1234-5 | CC: 98765-4 <br />
+                  Assembleia de Deus Cidade Esperança
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Prayer Request Section */}
       <section id="prayer" className="py-32 px-6">
         <div className="max-w-4xl mx-auto">
@@ -460,7 +539,12 @@ export default function App() {
             <p className="text-gray-400 font-light leading-relaxed mb-10 italic">
               "Honra ao Senhor com os teus bens..." <br /> Participe de nossa missão.
             </p>
-            <button className="text-[#B89B72] font-black border-b border-[#B89B72]/20 pb-1 text-xs uppercase tracking-[0.4em] hover:border-[#B89B72] transition-all">Dízimos & Ofertas</button>
+            <button 
+              onClick={() => scrollToSection('donations')}
+              className="text-[#B89B72] font-black border-b border-[#B89B72]/20 pb-1 text-xs uppercase tracking-[0.4em] hover:border-[#B89B72] transition-all"
+            >
+              Dízimos & Ofertas
+            </button>
           </div>
 
           <div className="lg:col-span-3 h-[600px] mt-12 rounded-[80px] overflow-hidden soft-shadow border-8 border-white">
