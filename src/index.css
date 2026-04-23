@@ -4,13 +4,26 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Cormorant Garamond", serif;
+  
+  @keyframes ethereal-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 }
 
 @utility ethereal-bg {
   background: 
-    radial-gradient(circle at 0% 0%, rgba(219, 234, 254, 0.4) 0%, transparent 40%),
-    radial-gradient(circle at 100% 100%, rgba(254, 243, 199, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 10% 20%, rgba(219, 234, 254, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(254, 243, 199, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 60%),
     #FFFBFA;
+  background-size: 200% 200%;
+  animation: ethereal-flow 20s ease infinite;
+}
+
+@utility text-brand-gold {
+  color: #8A704D;
 }
 
 @utility glass-panel {

@@ -78,7 +78,7 @@ export default function App() {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-serif font-medium tracking-tight text-[#1A202C]">AD Cidade Esperança</span>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-[#B89B72] font-semibold">Casa de Adoração</span>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-brand-gold font-semibold">Casa de Adoração</span>
             </div>
           </div>
 
@@ -88,16 +88,18 @@ export default function App() {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-xs uppercase tracking-[0.2em] font-medium hover:text-[#B89B72] transition-colors relative group py-2"
+                aria-label={`Navegar para ${link.name}`}
+                className="text-xs uppercase tracking-[0.2em] font-medium hover:text-brand-gold transition-colors relative group py-2"
                 id={`nav-link-${link.id}`}
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#B89B72] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
             <button 
               className="bg-[#1A202C] text-white px-8 py-3 rounded-full text-xs uppercase tracking-[0.2em] font-bold shadow-xl hover:bg-[#2D3748] hover:-translate-y-0.5 transition-all active:translate-y-0"
               onClick={() => scrollToSection('prayer')}
+              aria-label="Ir para pedidos de intercessão"
               id="nav-cta"
             >
               Intercessão
@@ -108,6 +110,7 @@ export default function App() {
           <button 
             className="lg:hidden p-3 rounded-full glass-panel soft-shadow" 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
             id="mobile-menu-toggle"
           >
             {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -150,26 +153,28 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="inline-flex items-center gap-3 px-5 py-2 glass-panel rounded-full text-[10px] uppercase tracking-[0.4em] font-bold text-[#B89B72] mb-10 soft-shadow">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#B89B72] animate-pulse"></span>
+              <div className="inline-flex items-center gap-3 px-5 py-2 glass-panel rounded-full text-[10px] uppercase tracking-[0.4em] font-bold text-brand-gold mb-10 soft-shadow">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
                 Uma Comunidade de Fé
               </div>
               <h1 className="text-6xl md:text-8xl font-serif italic font-light leading-[1] mb-10 tracking-tight text-[#1A202C]">
-                Lugar de <span className="font-normal text-[#B89B72]">Paz</span> e Restauração.
+                Lugar de <span className="font-normal text-brand-gold">Paz</span> e Restauração.
               </h1>
-              <p className="text-xl text-gray-500 mb-12 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light italic">
+              <p className="text-xl text-gray-700 mb-12 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light italic">
                 Caminhando juntos na graça, descobrindo o propósito e servindo com amor no coração de Cidade Esperança.
               </p>
               <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
                 <button 
-                  className="bg-[#B89B72] text-white px-10 py-5 rounded-full font-bold shadow-2xl hover:bg-[#a68a5f] hover:-translate-y-1 transition-all active:translate-y-0 w-full sm:w-auto uppercase text-xs tracking-widest"
+                  className="bg-brand-gold text-white px-10 py-5 rounded-full font-bold shadow-2xl hover:bg-[#a68a5f] hover:-translate-y-1 transition-all active:translate-y-0 w-full sm:w-auto uppercase text-xs tracking-widest"
                   onClick={() => scrollToSection('schedule')}
+                  aria-label="Ver programação completa de cultos"
                 >
                   Programação
                 </button>
                 <button 
                   className="glass-panel text-[#2D3748] px-10 py-5 rounded-full font-bold hover:bg-white transition-all w-full sm:w-auto uppercase text-xs tracking-widest soft-shadow"
                   onClick={() => scrollToSection('about')}
+                  aria-label="Conhecer a história e essência da nossa igreja"
                 >
                   Quem Somos
                 </button>
@@ -204,7 +209,7 @@ export default function App() {
       <section className="py-32 relative">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <div className="w-16 h-16 glass-panel rounded-full mx-auto flex items-center justify-center soft-shadow mb-12">
-            <Quote className="text-[#B89B72] w-6 h-6 stroke-[1.5]" />
+            <Quote className="text-brand-gold w-6 h-6 stroke-[1.5]" />
           </div>
           {loadingVerse ? (
             <div className="animate-pulse space-y-8">
@@ -222,13 +227,13 @@ export default function App() {
                 "{verseData.verse}"
               </h2>
               <div className="flex items-center justify-center gap-4">
-                <div className="h-[1px] w-8 bg-[#B89B72]/30"></div>
-                <p className="text-sm font-bold text-[#B89B72] uppercase tracking-[0.4em]">
+                <div className="h-[1px] w-8 bg-brand-gold/30"></div>
+                <p className="text-sm font-bold text-brand-gold uppercase tracking-[0.4em]">
                   {verseData.reference}
                 </p>
-                <div className="h-[1px] w-8 bg-[#B89B72]/30"></div>
+                <div className="h-[1px] w-8 bg-brand-gold/30"></div>
               </div>
-              <p className="text-gray-400 font-light text-xl italic max-w-2xl mx-auto border-t border-black/5 pt-10 px-8">
+              <p className="text-gray-600 font-light text-xl italic max-w-2xl mx-auto border-t border-black/5 pt-10 px-8 leading-relaxed">
                 {verseData.reflection}
               </p>
             </motion.div>
@@ -240,23 +245,23 @@ export default function App() {
       <section id="about" className="py-32 px-6 bg-white/50 backdrop-blur-sm relative">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row-reverse items-center gap-24">
           <div className="flex-1">
-            <span className="text-[#B89B72] uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Nossa Essência</span>
-            <h2 className="text-5xl font-serif font-light mb-10 text-[#1A202C] leading-tight italic">Compromisso com a <br /><span className="font-normal text-[#B89B72] not-italic">Palavra & Vida</span></h2>
-            <div className="space-y-8 text-lg font-light text-gray-500 leading-relaxed">
+            <span className="text-brand-gold uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Nossa Essência</span>
+            <h2 className="text-5xl font-serif font-light mb-10 text-[#1A202C] leading-tight italic">Compromisso com a <br /><span className="font-normal text-brand-gold not-italic">Palavra & Vida</span></h2>
+            <div className="space-y-8 text-lg font-light text-gray-700 leading-relaxed">
               <p>
                 A Assembleia de Deus em Cidade Esperança é mais que uma instituição; é uma família unida pelo desejo de manifestar o Reino de Deus em nossa comunidade.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-16 pt-10 border-t border-gray-100">
                 <div className="group">
-                  <div className="w-12 h-12 glass-panel rounded-full flex items-center justify-center mb-6 soft-shadow group-hover:bg-[#B89B72]/10 transition-colors">
-                    <Heart className="text-[#B89B72] w-5 h-5" />
+                  <div className="w-12 h-12 glass-panel rounded-full flex items-center justify-center mb-6 soft-shadow group-hover:bg-brand-gold/10 transition-colors" aria-hidden="true">
+                    <Heart className="text-brand-gold w-5 h-5" />
                   </div>
                   <h3 className="font-serif italic text-2xl text-[#1A202C] mb-3">Comunhão</h3>
                   <p className="text-sm font-light">Cuidamos uns dos outros como Cristo nos ensinou.</p>
                 </div>
                 <div className="group">
-                  <div className="w-12 h-12 glass-panel rounded-full flex items-center justify-center mb-6 soft-shadow group-hover:bg-[#B89B72]/10 transition-colors">
-                    <Quote className="text-[#B89B72] w-5 h-5" />
+                  <div className="w-12 h-12 glass-panel rounded-full flex items-center justify-center mb-6 soft-shadow group-hover:bg-brand-gold/10 transition-colors" aria-hidden="true">
+                    <Quote className="text-brand-gold w-5 h-5" />
                   </div>
                   <h3 className="font-serif italic text-2xl text-[#1A202C] mb-3">Verdade</h3>
                   <p className="text-sm font-light">Fundados na rocha imutável das Escrituras.</p>
@@ -296,8 +301,8 @@ export default function App() {
       <section id="schedule" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24">
-            <span className="text-[#B89B72] uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Celebração</span>
-            <h2 className="text-5xl font-serif italic font-light text-[#1A202C]">Momentos de <span className="font-normal text-[#B89B72] not-italic">Encontro</span></h2>
+            <span className="text-brand-gold uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Celebração</span>
+            <h2 className="text-5xl font-serif italic font-light text-[#1A202C]">Momentos de <span className="font-normal text-brand-gold not-italic">Encontro</span></h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -314,14 +319,14 @@ export default function App() {
                 className={`p-12 rounded-[56px] border border-white soft-shadow transition-all duration-500 flex flex-col justify-between min-h-[340px] ${item.highlight ? 'bg-[#1A202C] text-white' : 'glass-panel hover:bg-white'}`}
               >
                 <div>
-                  <div className={`text-[10px] uppercase font-black tracking-[0.3em] mb-10 ${item.highlight ? 'text-[#B89B72]' : 'text-gray-400'}`}>
+                  <div className={`text-[10px] uppercase font-black tracking-[0.3em] mb-10 ${item.highlight ? 'text-brand-gold' : 'text-gray-600'}`}>
                     {item.day}
                   </div>
                   <h3 className="text-3xl font-serif italic font-light leading-tight">{item.title}</h3>
                 </div>
                 <div className="flex items-center gap-5">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${item.highlight ? 'bg-white/10' : 'bg-[#B89B72]/10'}`}>
-                    <Clock size={18} className={item.highlight ? 'text-white' : 'text-[#B89B72]'} />
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${item.highlight ? 'bg-white/10' : 'bg-brand-gold/10'}`}>
+                    <Clock size={18} className={item.highlight ? 'text-white' : 'text-brand-gold'} />
                   </div>
                   <span className="text-3xl font-light font-serif">{item.time}</span>
                 </div>
@@ -337,10 +342,13 @@ export default function App() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-8">
             <div className="max-w-xl">
-              <span className="text-[#B89B72] uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Agenda de Fé</span>
-              <h2 className="text-5xl font-serif font-light text-white italic leading-tight">Prepare seu coração para <br /><span className="font-normal text-[#B89B72] not-italic">Nossos Encontros</span></h2>
+              <span className="text-brand-gold uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Agenda de Fé</span>
+              <h2 className="text-5xl font-serif font-light text-white italic leading-tight">Prepare seu coração para <br /><span className="font-normal text-brand-gold not-italic">Nossos Encontros</span></h2>
             </div>
-            <button className="glass-panel text-white border-white/10 px-8 py-4 rounded-full text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-white/10 transition-all soft-shadow">
+            <button 
+              className="glass-panel text-white border-white/10 px-8 py-4 rounded-full text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-white/10 transition-all soft-shadow"
+              aria-label="Ver calendário completo de eventos"
+            >
               Ver Todos os Eventos
             </button>
           </div>
@@ -372,9 +380,12 @@ export default function App() {
                   </div>
                 </div>
                 <div className="p-12">
-                  <h3 className="text-3xl font-serif italic font-light text-white mb-6 group-hover:text-[#B89B72] transition-colors">{event.title}</h3>
+                  <h3 className="text-3xl font-serif italic font-light text-white mb-6 group-hover:text-brand-gold transition-colors">{event.title}</h3>
                   <p className="text-gray-400 font-light leading-relaxed mb-10 text-lg italic	">{event.desc}</p>
-                  <button className="text-white border-b border-white/20 pb-2 text-[10px] uppercase tracking-[0.4em] font-bold hover:border-[#B89B72] hover:text-[#B89B72] transition-all">
+                  <button 
+                    className="text-white border-b border-white/20 pb-2 text-[10px] uppercase tracking-[0.4em] font-bold hover:border-brand-gold hover:text-brand-gold transition-all"
+                    aria-label={`Participar do evento: ${event.title}`}
+                  >
                     Participar
                   </button>
                 </div>
@@ -386,15 +397,15 @@ export default function App() {
 
       {/* Tithes and Offerings Section */}
       <section id="donations" className="py-32 px-6 bg-white/30 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-[#B89B72]/5 blur-[120px] -z-10 rounded-full"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-brand-gold/5 blur-[120px] -z-10 rounded-full"></div>
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
           <div className="flex-1 space-y-10">
             <div>
-              <span className="text-[#B89B72] uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Princípios de Fé</span>
-              <h2 className="text-5xl font-serif font-light text-[#1A202C] italic leading-tight">A Alegria de <br /><span className="font-normal text-[#B89B72] not-italic">Semear e Contribuir</span></h2>
+              <span className="text-brand-gold uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Princípios de Fé</span>
+              <h2 className="text-5xl font-serif font-light text-[#1A202C] italic leading-tight">A Alegria de <br /><span className="font-normal text-brand-gold not-italic">Semear e Contribuir</span></h2>
             </div>
             
-            <div className="space-y-6 text-lg font-light text-gray-500 leading-relaxed italic border-l border-[#B89B72]/20 pl-8">
+            <div className="space-y-6 text-lg font-light text-gray-700 leading-relaxed italic border-l border-brand-gold/20 pl-8">
               <p>
                 "Cada um contribua segundo propôs no seu coração; não com tristeza, ou por necessidade; porque Deus ama ao que dá com alegria." — 2 Co 9:7
               </p>
@@ -405,18 +416,18 @@ export default function App() {
 
             <div className="flex flex-col sm:flex-row gap-6 items-start">
               <div className="flex-1 p-8 glass-panel rounded-[40px] soft-shadow border-white/80 group hover:bg-white transition-all duration-500">
-                <div className="w-12 h-12 bg-[#B89B72]/10 rounded-2xl flex items-center justify-center mb-6 text-[#B89B72]">
+                <div className="w-12 h-12 bg-brand-gold/10 rounded-2xl flex items-center justify-center mb-6 text-brand-gold">
                   <HandHeart className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-serif italic mb-2">Impacto Social</h3>
-                <p className="text-sm text-gray-400">Suas contribuições apoiam famílias carentes e projetos de assistência em Cidade Esperança.</p>
+                <p className="text-sm text-gray-600">Suas contribuições apoiam famílias carentes e projetos de assistência em Cidade Esperança.</p>
               </div>
               <div className="flex-1 p-8 glass-panel rounded-[40px] soft-shadow border-white/80 group hover:bg-white transition-all duration-500">
-                <div className="w-12 h-12 bg-[#B89B72]/10 rounded-2xl flex items-center justify-center mb-6 text-[#B89B72]">
+                <div className="w-12 h-12 bg-brand-gold/10 rounded-2xl flex items-center justify-center mb-6 text-brand-gold">
                   <Coins className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-serif italic mb-2">Reino em Expansão</h3>
-                <p className="text-sm text-gray-400">Investimento na manutenção do templo e na propagação do Evangelho através de nossos eventos.</p>
+                <p className="text-sm text-gray-600">Investimento na manutenção do templo e na propagação do Evangelho através de nossos eventos.</p>
               </div>
             </div>
           </div>
@@ -433,24 +444,27 @@ export default function App() {
               
               <div className="text-center space-y-10">
                 <div>
-                  <h3 className="text-[10px] uppercase tracking-[0.4em] font-black text-[#B89B72] mb-4">Contribuição Online</h3>
+                  <h3 className="text-[10px] uppercase tracking-[0.4em] font-black text-brand-gold mb-4">Contribuição Online</h3>
                   <div className="w-24 h-24 vibrant-gradient rounded-[40px] shadow-2xl mx-auto flex items-center justify-center opacity-10"></div>
                   <div className="mt-[-60px]">
-                    <span className="text-6xl font-serif italic text-gray-900 leading-none">PIX</span>
+                    <span className="text-6xl font-serif italic text-gray-900 leading-none" aria-label="PIX">PIX</span>
                   </div>
                 </div>
 
                 <div className="p-6 bg-white/50 rounded-3xl border border-black/5 space-y-2">
-                  <span className="text-[10px] uppercase font-black text-gray-400 tracking-[0.2em]">Chave de Acesso</span>
-                  <p className="text-lg font-bold text-gray-700 break-all">contato@igrejahaesperanca.com.br</p>
+                  <span className="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">Chave de Acesso</span>
+                  <p className="text-lg font-bold text-gray-800 break-all">contato@igrejahaesperanca.com.br</p>
                 </div>
 
-                <button className="w-full bg-[#B89B72] text-white font-bold py-6 rounded-[32px] text-xs uppercase tracking-[0.4em] shadow-2xl hover:bg-[#a68a5f] hover:-translate-y-1 transition-all active:translate-y-0 group">
+                <button 
+                  className="w-full bg-brand-gold text-white font-bold py-6 rounded-[32px] text-xs uppercase tracking-[0.4em] shadow-2xl hover:bg-[#a68a5f] hover:-translate-y-1 transition-all active:translate-y-0 group"
+                  aria-label="Copiar chave PIX para área de transferência"
+                >
                   Copiar Chave PIX
                   <span className="block text-[8px] opacity-60 font-light mt-1">Ou Escanear QR Code</span>
                 </button>
 
-                <p className="text-[10px] text-gray-400 uppercase tracking-widest leading-relaxed">
+                <p className="text-[10px] text-gray-600 uppercase tracking-widest leading-relaxed">
                   Banco do Brasil | Ag: 1234-5 | CC: 98765-4 <br />
                   Assembleia de Deus Cidade Esperança
                 </p>
@@ -464,31 +478,34 @@ export default function App() {
       <section id="prayer" className="py-32 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <div className="w-20 h-20 bg-[#B89B72]/10 rounded-full flex items-center justify-center mx-auto mb-10">
-              <Heart className="text-[#B89B72] w-8 h-8 stroke-[1.5]" />
+            <div className="w-20 h-20 bg-brand-gold/10 rounded-full flex items-center justify-center mx-auto mb-10" aria-hidden="true">
+              <Heart className="text-brand-gold w-8 h-8 stroke-[1.5]" />
             </div>
-            <h2 className="text-5xl font-serif italic text-[#1A202C] mb-6">Pedidos de <span className="font-normal text-[#B89B72] not-italic">Invercessão</span></h2>
-            <p className="text-gray-400 font-light text-lg italic max-w-xl mx-auto">
+            <h2 className="text-5xl font-serif italic text-[#1A202C] mb-6">Pedidos de <span className="font-normal text-brand-gold not-italic">Intercessão</span></h2>
+            <p className="text-gray-600 font-light text-lg italic max-w-xl mx-auto">
               Nossa equipe de oração quer caminhar com você. No silêncio do espírito, levemos seus anseios aos pés do Altíssimo.
             </p>
           </div>
           
-          <form className="glass-panel p-12 md:p-16 rounded-[64px] soft-shadow border-white/50 space-y-8">
+          <form className="glass-panel p-12 md:p-16 rounded-[64px] soft-shadow border-white/50 space-y-8" aria-label="Formulário de pedido de oração">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <label className="text-[10px] uppercase tracking-[0.3em] font-black text-gray-400 ml-4">Como devemos lhe chamar?</label>
-                <input type="text" placeholder="Seu Nome" className="w-full bg-white/50 border border-black/5 rounded-3xl p-6 focus:outline-none focus:border-[#B89B72] transition-all font-light italic" />
+                <label htmlFor="prayer-name" className="text-[10px] uppercase tracking-[0.3em] font-black text-gray-600 ml-4">Como devemos lhe chamar?</label>
+                <input id="prayer-name" type="text" placeholder="Seu Nome" className="w-full bg-white/50 border border-black/5 rounded-3xl p-6 focus:outline-none focus:border-brand-gold transition-all font-light italic" aria-required="true" />
               </div>
               <div className="space-y-4">
-                <label className="text-[10px] uppercase tracking-[0.3em] font-black text-gray-400 ml-4">Onde podemos lhe encontrar?</label>
-                <input type="text" placeholder="WhatsApp / E-mail" className="w-full bg-white/50 border border-black/5 rounded-3xl p-6 focus:outline-none focus:border-[#B89B72] transition-all font-light italic" />
+                <label htmlFor="prayer-contact" className="text-[10px] uppercase tracking-[0.3em] font-black text-gray-600 ml-4">Onde podemos lhe encontrar?</label>
+                <input id="prayer-contact" type="text" placeholder="WhatsApp / E-mail" className="w-full bg-white/50 border border-black/5 rounded-3xl p-6 focus:outline-none focus:border-brand-gold transition-all font-light italic" aria-required="true" />
               </div>
               <div className="space-y-4 md:col-span-2">
-                <label className="text-[10px] uppercase tracking-[0.3em] font-black text-gray-400 ml-4">Qual seu clamor ou gratidão?</label>
-                <textarea placeholder="..." rows={4} className="w-full bg-white/50 border border-black/5 rounded-3xl p-6 focus:outline-none focus:border-[#B89B72] transition-all font-light italic resize-none"></textarea>
+                <label htmlFor="prayer-message" className="text-[10px] uppercase tracking-[0.3em] font-black text-gray-600 ml-4">Qual seu clamor ou gratidão?</label>
+                <textarea id="prayer-message" placeholder="..." rows={4} className="w-full bg-white/50 border border-black/5 rounded-3xl p-6 focus:outline-none focus:border-brand-gold transition-all font-light italic resize-none" aria-required="true"></textarea>
               </div>
             </div>
-            <button className="w-full bg-[#1A202C] text-white font-bold py-6 rounded-[32px] text-xs uppercase tracking-[0.4em] shadow-2xl hover:bg-[#B89B72] hover:-translate-y-1 transition-all active:translate-y-0">
+            <button 
+              className="w-full bg-[#1A202C] text-white font-bold py-6 rounded-[32px] text-xs uppercase tracking-[0.4em] shadow-2xl hover:bg-brand-gold hover:-translate-y-1 transition-all active:translate-y-0"
+              aria-label="Enviar meu pedido de oração"
+            >
               Enviar Pedido
             </button>
           </form>
@@ -500,29 +517,38 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-20">
           <div className="lg:col-span-2 space-y-16">
             <div>
-              <span className="text-[#B89B72] uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Conexão</span>
-              <h2 className="text-5xl font-serif font-light text-[#1A202C] leading-tight italic">Nossas portas estão <br /><span className="font-normal text-[#B89B72] not-italic">Sempre Abertas</span></h2>
+              <span className="text-brand-gold uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Conexão</span>
+              <h2 className="text-5xl font-serif font-light text-[#1A202C] leading-tight italic">Nossas portas estão <br /><span className="font-normal text-brand-gold not-italic">Sempre Abertas</span></h2>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-16">
               <div className="space-y-12">
                 <div className="group">
-                  <span className="block text-[10px] uppercase font-black text-gray-400 tracking-[0.3em] mb-4">Lugar de Encontro</span>
-                  <span className="text-2xl font-serif italic font-light text-gray-700 leading-snug">Av. Paraíba, 48 — <br />Cidade Esperança, Natal - RN</span>
+                  <span className="block text-[10px] uppercase font-black text-gray-500 tracking-[0.3em] mb-4">Lugar de Encontro</span>
+                  <address className="text-2xl font-serif italic font-light text-gray-800 leading-snug not-italic">Av. Paraíba, 48 — <br />Cidade Esperança, Natal - RN</address>
                 </div>
                 <div className="group">
-                  <span className="block text-[10px] uppercase font-black text-gray-400 tracking-[0.3em] mb-4">Fala conosco</span>
-                  <span className="text-2xl font-serif italic font-light text-gray-700 leading-snug">(84) 3205-2445</span>
+                  <span className="block text-[10px] uppercase font-black text-gray-500 tracking-[0.3em] mb-4">Fala conosco</span>
+                  <span className="text-2xl font-serif italic font-light text-gray-800 leading-snug">(84) 3205-2445</span>
                 </div>
               </div>
               <div className="space-y-12">
                 <div className="group">
-                  <span className="block text-[10px] uppercase font-black text-gray-400 tracking-[0.3em] mb-4">Cartas Digitais</span>
-                  <span className="text-xl font-serif italic text-gray-700">contato@igrejahaesperanca.com.br</span>
+                  <span className="block text-[10px] uppercase font-black text-gray-500 tracking-[0.3em] mb-4">Cartas Digitais</span>
+                  <span className="text-xl font-serif italic text-gray-800">contato@igrejahaesperanca.com.br</span>
                 </div>
                 <div className="flex gap-6">
-                  {[Instagram, Facebook, Youtube].map((Icon, i) => (
-                    <div key={i} className="w-14 h-14 glass-panel rounded-full flex items-center justify-center text-gray-400 hover:text-[#B89B72] hover:border-[#B89B72]/50 transition-all cursor-pointer soft-shadow">
+                  {[
+                    { Icon: Instagram, label: 'Instagram' },
+                    { Icon: Facebook, label: 'Facebook' },
+                    { Icon: Youtube, label: 'Youtube' }
+                  ].map(({ Icon, label }, i) => (
+                    <div 
+                      key={i} 
+                      className="w-14 h-14 glass-panel rounded-full flex items-center justify-center text-gray-600 hover:text-brand-gold hover:border-brand-gold/50 transition-all cursor-pointer soft-shadow"
+                      aria-label={`Seguir no ${label}`}
+                      role="button"
+                    >
                       <Icon size={20} className="stroke-[1.5]" />
                     </div>
                   ))}
@@ -532,16 +558,17 @@ export default function App() {
           </div>
           
           <div className="glass-panel p-12 rounded-[64px] soft-shadow border-white/50 flex flex-col justify-center items-center text-center group bg-white/40">
-            <div className="w-24 h-24 bg-[#B89B72]/10 rounded-full flex items-center justify-center mb-8 soft-shadow group-hover:scale-110 transition-transform duration-500">
-              <Heart className="text-[#B89B72] w-8 h-8 fill-[#B89B72]/10" />
+            <div className="w-24 h-24 bg-brand-gold/10 rounded-full flex items-center justify-center mb-8 soft-shadow group-hover:scale-110 transition-transform duration-500" aria-hidden="true">
+              <Heart className="text-brand-gold w-8 h-8 fill-brand-gold/10" />
             </div>
-            <h3 className="text-3xl font-serif italic font-light mb-6">Generosidade</h3>
-            <p className="text-gray-400 font-light leading-relaxed mb-10 italic">
+            <h3 className="text-3xl font-serif italic font-light mb-6 text-[#1A202C]">Generosidade</h3>
+            <p className="text-gray-700 font-light leading-relaxed mb-10 italic">
               "Honra ao Senhor com os teus bens..." <br /> Participe de nossa missão.
             </p>
             <button 
               onClick={() => scrollToSection('donations')}
-              className="text-[#B89B72] font-black border-b border-[#B89B72]/20 pb-1 text-xs uppercase tracking-[0.4em] hover:border-[#B89B72] transition-all"
+              className="text-brand-gold font-black border-b border-brand-gold/20 pb-1 text-xs uppercase tracking-[0.4em] hover:border-brand-gold transition-all"
+              aria-label="Ir para detalhes de dízimos e ofertas"
             >
               Dízimos & Ofertas
             </button>
@@ -563,14 +590,26 @@ export default function App() {
             </div>
             <span className="text-[10px] uppercase tracking-[0.5em] text-[#B89B72] font-bold ml-12">Cidade Natal - RN</span>
           </div>
-          <div className="flex gap-12 text-[10px] uppercase font-black tracking-[0.4em] text-gray-300">
-            <span className="hover:text-[#B89B72] transition-colors cursor-pointer">Início</span>
-            <span className="hover:text-[#B89B72] transition-colors cursor-pointer">Fé</span>
-            <span className="hover:text-[#B89B72] transition-colors cursor-pointer">2026</span>
+          <div className="flex gap-12 text-[10px] uppercase font-black tracking-[0.4em] text-gray-500">
+            <button 
+              onClick={() => scrollToSection('home')} 
+              className="hover:text-brand-gold transition-colors cursor-pointer"
+              aria-label="Voltar para o topo"
+            >
+              Início
+            </button>
+            <button 
+              onClick={() => scrollToSection('about')} 
+              className="hover:text-brand-gold transition-colors cursor-pointer"
+              aria-label="Ir para seção fé"
+            >
+              Fé
+            </button>
+            <span aria-hidden="true">2026</span>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-20 pt-10 border-t border-gray-100 text-center">
-          <p className="text-[9px] uppercase tracking-[0.6em] text-gray-400">© Feito com Amor & Revelação em Cidade Esperança</p>
+          <p className="text-[9px] uppercase tracking-[0.6em] text-gray-600">© Feito com Amor & Revelação em Cidade Esperança</p>
         </div>
       </footer>
     </div>
