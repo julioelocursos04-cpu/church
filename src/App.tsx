@@ -61,49 +61,53 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#FDFCF8] text-[#1F2937] font-sans">
+    <div className="min-h-screen ethereal-bg text-[#2D3748] font-sans selection:bg-[#B89B72]/20">
       {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+      <nav className="fixed top-0 w-full z-50 transition-all duration-500 bg-white/40 backdrop-blur-xl border-b border-white/50">
+        <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
           <div 
-            className="flex items-center gap-3 cursor-pointer" 
+            className="flex items-center gap-4 cursor-pointer group" 
             onClick={() => scrollToSection('home')}
             id="nav-logo"
           >
-            <div className="w-10 h-10 vibrant-gradient rounded-xl flex items-center justify-center shadow-lg">
-              <Church className="text-white w-6 h-6" />
+            <div className="w-12 h-12 rounded-full glass-panel flex items-center justify-center soft-shadow group-hover:scale-105 transition-transform duration-500">
+              <Church className="text-[#B89B72] w-6 h-6 stroke-[1.5]" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-gray-800">AD Cidade Esperança</span>
+            <div className="flex flex-col">
+              <span className="text-xl font-serif font-medium tracking-tight text-[#1A202C]">AD Cidade Esperança</span>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#B89B72] font-semibold">Casa de Adoração</span>
+            </div>
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 font-medium text-gray-500">
+          <div className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-sm hover:text-blue-500 transition-colors uppercase tracking-tight"
+                className="text-xs uppercase tracking-[0.2em] font-medium hover:text-[#B89B72] transition-colors relative group py-2"
                 id={`nav-link-${link.id}`}
               >
                 {link.name}
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#B89B72] transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
             <button 
-              className="bg-[#4D96FF] text-white px-6 py-2 rounded-full text-sm font-bold shadow-md hover:bg-blue-600 transition-all"
+              className="bg-[#1A202C] text-white px-8 py-3 rounded-full text-xs uppercase tracking-[0.2em] font-bold shadow-xl hover:bg-[#2D3748] hover:-translate-y-0.5 transition-all active:translate-y-0"
               onClick={() => scrollToSection('prayer')}
               id="nav-cta"
             >
-              Pedir Oração
+              Intercessão
             </button>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="md:hidden p-2 text-gray-600" 
+            className="lg:hidden p-3 rounded-full glass-panel soft-shadow" 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             id="mobile-menu-toggle"
           >
-            {isMenuOpen ? <X /> : <Menu />}
+            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
@@ -111,18 +115,18 @@ export default function App() {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-b border-gray-100 overflow-hidden shadow-xl"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="lg:hidden fixed top-24 left-4 right-4 bg-white/90 backdrop-blur-2xl rounded-[32px] soft-shadow p-8 border border-white/50"
               id="mobile-menu"
             >
-              <div className="px-4 py-6 flex flex-col gap-4">
+              <div className="flex flex-col gap-6">
                 {navLinks.map((link) => (
                   <button
                     key={link.id}
                     onClick={() => scrollToSection(link.id)}
-                    className="text-left text-lg py-2 border-b border-gray-50 text-gray-600 font-medium"
+                    className="text-left text-sm uppercase tracking-[0.3em] py-4 border-b border-gray-50 text-gray-600 font-medium last:border-0"
                   >
                     {link.name}
                   </button>
@@ -134,171 +138,189 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-32 pb-20 px-4 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-        <div className="flex-1 text-center lg:text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-block px-4 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-bold tracking-wide uppercase mb-6">
-              Seja Bem-vindo
-            </div>
-            <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6 tracking-tight text-gray-900">
-              Um lugar para <span className="text-[#4D96FF]">pertencer</span> e crescer.
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed">
-              Nossa missão é amar a Deus, servir ao próximo e compartilhar a esperança que transforma vidas todos os dias.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-              <button 
-                className="bg-gray-900 text-white px-8 py-4 rounded-2xl font-bold shadow-xl hover:bg-black transition-all w-full sm:w-auto"
-                onClick={() => scrollToSection('schedule')}
-              >
-                Ver Programação
-              </button>
-              <button 
-                className="border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-2xl font-bold hover:bg-gray-50 transition-all w-full sm:w-auto"
-                onClick={() => scrollToSection('prayer')}
-              >
-                Pedir Oração
-              </button>
-            </div>
-          </motion.div>
-        </div>
-        <div className="flex-1 w-full max-w-lg relative py-12">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full h-full vibrant-gradient rounded-[48px] shadow-2xl relative overflow-hidden"
-          >
-            <img 
-              src="https://images.unsplash.com/photo-1438032005730-c779502df39b?auto=format&fit=crop&q=80&w=800" 
-              alt="Igreja" 
-              className="w-full h-full object-cover mix-blend-overlay opacity-60"
-            />
-            <div className="absolute inset-0 flex items-center justify-center p-10 text-white text-center">
-              <div className="glass-card p-8 rounded-3xl space-y-4">
-                <div className="w-16 h-16 bg-white/20 rounded-full mx-auto flex items-center justify-center">
-                  <Heart className="w-8 h-8 text-white fill-current" />
-                </div>
-                <h2 className="text-2xl font-bold">Culto da Família</h2>
-                <p className="text-sm opacity-90">Domingo às 18:30h</p>
-                <div className="pt-4">
-                  <div className="bg-white/20 py-2 px-4 rounded-full text-xs font-mono font-bold tracking-widest">
-                    VEM PRA CÁ
-                  </div>
+      <section id="home" className="pt-48 pb-24 px-6 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[80vw] h-[80vw] bg-[#B89B72]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
+          <div className="flex-1 text-center lg:text-left z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="inline-flex items-center gap-3 px-5 py-2 glass-panel rounded-full text-[10px] uppercase tracking-[0.4em] font-bold text-[#B89B72] mb-10 soft-shadow">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#B89B72] animate-pulse"></span>
+                Uma Comunidade de Fé
+              </div>
+              <h1 className="text-6xl md:text-8xl font-serif italic font-light leading-[1] mb-10 tracking-tight text-[#1A202C]">
+                Lugar de <span className="font-normal text-[#B89B72]">Paz</span> e Restauração.
+              </h1>
+              <p className="text-xl text-gray-500 mb-12 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light italic">
+                Caminhando juntos na graça, descobrindo o propósito e servindo com amor no coração de Cidade Esperança.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+                <button 
+                  className="bg-[#B89B72] text-white px-10 py-5 rounded-full font-bold shadow-2xl hover:bg-[#a68a5f] hover:-translate-y-1 transition-all active:translate-y-0 w-full sm:w-auto uppercase text-xs tracking-widest"
+                  onClick={() => scrollToSection('schedule')}
+                >
+                  Programação
+                </button>
+                <button 
+                  className="glass-panel text-[#2D3748] px-10 py-5 rounded-full font-bold hover:bg-white transition-all w-full sm:w-auto uppercase text-xs tracking-widest soft-shadow"
+                  onClick={() => scrollToSection('about')}
+                >
+                  Quem Somos
+                </button>
+              </div>
+            </motion.div>
+          </div>
+          <div className="flex-1 w-full max-w-xl relative">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              className="relative aspect-[4/5] rounded-[80px] overflow-hidden soft-shadow group"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1438032005730-c779502df39b?auto=format&fit=crop&q=80&w=1200" 
+                alt="Igreja" 
+                className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+              <div className="absolute bottom-12 left-12 right-12">
+                <div className="glass-panel p-8 rounded-[40px] text-center border-white/20">
+                  <h3 className="text-white text-xl font-serif italic mb-2">"A graça de Deus nos basta."</h3>
+                  <div className="w-12 h-[1px] bg-[#B89B72] mx-auto"></div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-          <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-400 rounded-3xl -z-10 opacity-20"></div>
-          <div className="absolute -top-4 -right-4 w-48 h-48 bg-yellow-400 rounded-full -z-10 opacity-20"></div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Verse of the Day */}
-      <section className="py-20 bg-white border-y border-gray-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl vibrant-gradient shadow-lg mb-8">
-            <Quote className="text-white w-7 h-7" />
+      <section className="py-32 relative">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <div className="w-16 h-16 glass-panel rounded-full mx-auto flex items-center justify-center soft-shadow mb-12">
+            <Quote className="text-[#B89B72] w-6 h-6 stroke-[1.5]" />
           </div>
-          <h2 className="text-xs uppercase tracking-[0.4em] font-extrabold text-blue-500 mb-8">Palavra de Hoje</h2>
           {loadingVerse ? (
-            <div className="animate-pulse space-y-4">
-              <div className="h-8 bg-gray-100 rounded-xl w-3/4 mx-auto"></div>
-              <div className="h-4 bg-gray-100 rounded-full w-1/4 mx-auto"></div>
+            <div className="animate-pulse space-y-8">
+              <div className="h-12 bg-black/5 rounded-2xl w-3/4 mx-auto"></div>
+              <div className="h-4 bg-black/5 rounded-full w-1/4 mx-auto"></div>
             </div>
           ) : verseData && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="space-y-6"
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="space-y-10"
             >
-              <p className="text-3xl md:text-5xl leading-tight font-extrabold text-gray-900 tracking-tight">
+              <h2 className="text-4xl md:text-6xl font-serif italic font-light text-[#1A202C] leading-tight tracking-tight">
                 "{verseData.verse}"
-              </p>
-              <p className="text-lg font-bold text-gray-400 uppercase tracking-widest">
-                — {verseData.reference}
-              </p>
-              <div className="pt-10 max-w-lg mx-auto">
-                <p className="text-gray-500 text-lg leading-relaxed font-medium">
-                  {verseData.reflection}
+              </h2>
+              <div className="flex items-center justify-center gap-4">
+                <div className="h-[1px] w-8 bg-[#B89B72]/30"></div>
+                <p className="text-sm font-bold text-[#B89B72] uppercase tracking-[0.4em]">
+                  {verseData.reference}
                 </p>
+                <div className="h-[1px] w-8 bg-[#B89B72]/30"></div>
               </div>
+              <p className="text-gray-400 font-light text-xl italic max-w-2xl mx-auto border-t border-black/5 pt-10 px-8">
+                {verseData.reflection}
+              </p>
             </motion.div>
           )}
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
+      <section id="about" className="py-32 px-6 bg-white/50 backdrop-blur-sm relative">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row-reverse items-center gap-24">
           <div className="flex-1">
-            <span className="text-blue-500 uppercase tracking-widest text-sm font-black mb-4 block">Sobre Nós</span>
-            <h2 className="text-5xl font-extrabold mb-8 text-gray-900 leading-tight">Nossa <span className="text-[#FF6B6B]">Essência</span> & Caminho</h2>
-            <p className="text-gray-600 mb-6 text-lg leading-relaxed font-medium">
-              Acreditamos que a igreja é mais que um prédio; é um corpo vivo pronto para servir. Nossa história é escrita por vidas transformadas.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12">
-              <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all">
-                <Heart className="text-red-400 mb-4" />
-                <h3 className="font-bold text-xl mb-2">Comixão</h3>
-                <p className="text-sm text-gray-500 font-medium">O amor ao próximo é o que nos move e define nossas ações.</p>
-              </div>
-              <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all">
-                <Quote className="text-yellow-500 mb-4" />
-                <h3 className="font-bold text-xl mb-2">Fundamento</h3>
-                <p className="text-sm text-gray-500 font-medium">Vivemos e ensinamos a Palavra de forma prática e real.</p>
+            <span className="text-[#B89B72] uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Nossa Essência</span>
+            <h2 className="text-5xl font-serif font-light mb-10 text-[#1A202C] leading-tight italic">Compromisso com a <br /><span className="font-normal text-[#B89B72] not-italic">Palavra & Vida</span></h2>
+            <div className="space-y-8 text-lg font-light text-gray-500 leading-relaxed">
+              <p>
+                A Assembleia de Deus em Cidade Esperança é mais que uma instituição; é uma família unida pelo desejo de manifestar o Reino de Deus em nossa comunidade.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-16 pt-10 border-t border-gray-100">
+                <div className="group">
+                  <div className="w-12 h-12 glass-panel rounded-full flex items-center justify-center mb-6 soft-shadow group-hover:bg-[#B89B72]/10 transition-colors">
+                    <Heart className="text-[#B89B72] w-5 h-5" />
+                  </div>
+                  <h3 className="font-serif italic text-2xl text-[#1A202C] mb-3">Comunhão</h3>
+                  <p className="text-sm font-light">Cuidamos uns dos outros como Cristo nos ensinou.</p>
+                </div>
+                <div className="group">
+                  <div className="w-12 h-12 glass-panel rounded-full flex items-center justify-center mb-6 soft-shadow group-hover:bg-[#B89B72]/10 transition-colors">
+                    <Quote className="text-[#B89B72] w-5 h-5" />
+                  </div>
+                  <h3 className="font-serif italic text-2xl text-[#1A202C] mb-3">Verdade</h3>
+                  <p className="text-sm font-light">Fundados na rocha imutável das Escrituras.</p>
+                </div>
               </div>
             </div>
           </div>
-          <div className="flex-1 w-full">
-            <div className="relative">
-              <div className="aspect-square bg-yellow-100 rounded-[64px] absolute inset-0 -rotate-6"></div>
-              <div className="aspect-square rounded-[64px] overflow-hidden shadow-2xl relative z-10">
-                <img src="https://images.unsplash.com/photo-1544427928-c49bcdee84ba?auto=format&fit=crop&q=80&w=800" alt="Comunidade" className="w-full h-full object-cover" />
+          <div className="flex-1 w-full grid grid-cols-2 gap-6 relative">
+            <div className="absolute inset-0 bg-[#B89B72]/5 rounded-[80px] blur-3xl -z-10 rotate-12"></div>
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="space-y-6"
+            >
+              <div className="aspect-[3/4] rounded-[48px] overflow-hidden soft-shadow">
+                <img src="https://images.unsplash.com/photo-1544427928-c49bcdee84ba?auto=format&fit=crop&q=80&w=400" alt="Comunidade" className="w-full h-full object-cover" />
               </div>
-              <div className="absolute top-1/2 -right-10 w-24 h-24 vibrant-gradient rounded-3xl opacity-20 -z-10 animate-bounce"></div>
-            </div>
+              <div className="aspect-square rounded-[48px] overflow-hidden soft-shadow bg-[#B89B72]/10 flex items-center justify-center p-10 text-center">
+                <span className="text-[#B89B72] font-serif italic text-xl">"Aquele que começou a boa obra..."</span>
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: -50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="space-y-6 pt-12"
+            >
+              <div className="aspect-square rounded-[48px] overflow-hidden soft-shadow vibrant-gradient opacity-10"></div>
+              <div className="aspect-[3/4] rounded-[48px] overflow-hidden soft-shadow">
+                <img src="https://images.unsplash.com/photo-1490730141103-6ca3d7589d44?auto=format&fit=crop&q=80&w=400" alt="Oraçao" className="w-full h-full object-cover" />
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Schedule Section */}
-      <section id="schedule" className="py-32 px-4 bg-gray-900 text-white overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-96 h-96 vibrant-gradient rounded-full blur-[120px] opacity-20 -translate-y-1/2 translate-x-1/2"></div>
+      <section id="schedule" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <span className="text-blue-400 bg-blue-400/10 px-4 py-1 rounded-full uppercase tracking-widest text-xs font-black inline-block mb-4">Programação</span>
-            <h2 className="text-5xl font-extrabold tracking-tight">Vem celebrar <span className="text-yellow-400 underline decoration-blue-500 underline-offset-8">conosco</span></h2>
+          <div className="text-center mb-24">
+            <span className="text-[#B89B72] uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Celebração</span>
+            <h2 className="text-5xl font-serif italic font-light text-[#1A202C]">Momentos de <span className="font-normal text-[#B89B72] not-italic">Encontro</span></h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {[
-              { day: 'Domingo', time: '09h00', title: 'Escola Bíblica' },
-              { day: 'Domingo', time: '18h30', title: 'Culto de Celebração', primary: true },
+              { day: 'Domingo', time: '09h00', title: 'Escola Bíblica Dom.' },
+              { day: 'Domingo', time: '18h30', title: 'Culto de Celebração', highlight: true },
               { day: 'Quarta-feira', time: '19h30', title: 'Noite de Poder' },
-              { day: 'Sábado', time: '19h00', title: 'Jovens (Link)' },
-              { day: 'Sexta-feira', time: '06h00', title: 'Alvorada de Oração' },
+              { day: 'Sábado', time: '19h00', title: 'Jovens (Conectados)' },
+              { day: 'Sexta-feira', time: '06h00', title: 'Círculo de Oração' },
             ].map((item, idx) => (
               <motion.div 
                 key={idx}
-                whileHover={{ scale: 1.02 }}
-                className={`p-8 rounded-[40px] flex flex-col justify-between h-[300px] transition-all ${item.primary ? 'vibrant-gradient text-white' : 'bg-white/5 border border-white/10'}`}
+                whileHover={{ y: -8 }}
+                className={`p-12 rounded-[56px] border border-white soft-shadow transition-all duration-500 flex flex-col justify-between min-h-[340px] ${item.highlight ? 'bg-[#1A202C] text-white' : 'glass-panel hover:bg-white'}`}
               >
                 <div>
-                  <div className={`text-xs uppercase font-black tracking-widest mb-6 ${item.primary ? 'text-white/80' : 'text-blue-400'}`}>
+                  <div className={`text-[10px] uppercase font-black tracking-[0.3em] mb-10 ${item.highlight ? 'text-[#B89B72]' : 'text-gray-400'}`}>
                     {item.day}
                   </div>
-                  <h3 className="text-3xl font-extrabold mb-2 leading-tight">{item.title}</h3>
+                  <h3 className="text-3xl font-serif italic font-light leading-tight">{item.title}</h3>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className={`p-3 rounded-2xl ${item.primary ? 'bg-white/20' : 'bg-white/10'}`}>
-                    <Clock size={20} />
+                <div className="flex items-center gap-5">
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${item.highlight ? 'bg-white/10' : 'bg-[#B89B72]/10'}`}>
+                    <Clock size={18} className={item.highlight ? 'text-white' : 'text-[#B89B72]'} />
                   </div>
-                  <span className="text-2xl font-bold">{item.time}</span>
+                  <span className="text-3xl font-light font-serif">{item.time}</span>
                 </div>
               </motion.div>
             ))}
@@ -307,144 +329,164 @@ export default function App() {
       </section>
 
       {/* Upcoming Events */}
-      <section id="events" className="py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div>
-              <span className="text-red-500 uppercase tracking-widest text-sm font-black mb-4 block">Agenda Ativa</span>
-              <h2 className="text-5xl font-extrabold tracking-tight text-gray-900">Eventos <span className="text-blue-500">Prata</span> e Ouro</h2>
+      <section id="events" className="py-32 px-6 bg-[#1A202C] rounded-[80px] mx-4 relative overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-[60vw] h-[60vw] bg-[#B89B72]/10 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/4"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-8">
+            <div className="max-w-xl">
+              <span className="text-[#B89B72] uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Agenda de Fé</span>
+              <h2 className="text-5xl font-serif font-light text-white italic leading-tight">Prepare seu coração para <br /><span className="font-normal text-[#B89B72] not-italic">Nossos Encontros</span></h2>
             </div>
-            <button className="bg-yellow-100 text-yellow-700 px-6 py-3 rounded-2xl font-bold hover:bg-yellow-200 transition-all">
-              Calendário Completo
+            <button className="glass-panel text-white border-white/10 px-8 py-4 rounded-full text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-white/10 transition-all soft-shadow">
+              Ver Todos os Eventos
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {[
               { 
                 date: '15 MAI', 
                 title: 'Conferência de Família', 
-                desc: 'Um final de semana de aprendizado e fortalecimento para o lar.',
+                desc: 'Um tempo precioso de restauração e cura para todos os lares.',
                 img: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=800'
               },
               { 
                 date: '02 JUN', 
-                title: 'Impacto Regional', 
-                desc: 'Ação social e evangelismo em diversos bairros da nossa cidade.',
+                title: 'Impacto Missionário', 
+                desc: 'Manifestando a luz de Cristo através de ações de serviço e amor.',
                 img: 'https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&q=80&w=800'
               },
             ].map((event, idx) => (
-              <div key={idx} className="group flex bg-white rounded-[40px] shadow-2xl shadow-gray-200/50 overflow-hidden border border-gray-50 flex-col sm:flex-row h-full">
-                <div className="sm:w-1/2 aspect-square relative overflow-hidden">
-                  <img src={event.img} alt={event.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-                  <div className="absolute top-4 left-4 bg-white px-4 py-2 rounded-2xl font-black text-xs shadow-lg">
+              <motion.div 
+                key={idx}
+                whileHover={{ y: -10 }}
+                className="group flex flex-col glass-panel border-white/5 rounded-[64px] overflow-hidden transition-all duration-700"
+              >
+                <div className="aspect-[16/10] relative overflow-hidden">
+                  <img src={event.img} alt={event.title} className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" />
+                  <div className="absolute top-8 left-8 bg-[#B89B72] text-white px-6 py-3 rounded-2xl font-black text-[10px] tracking-widest shadow-2xl">
                     {event.date}
                   </div>
                 </div>
-                <div className="p-8 flex-1 flex flex-col justify-center">
-                  <h3 className="text-2xl font-extrabold mb-4 text-gray-900 leading-tight">{event.title}</h3>
-                  <p className="text-gray-500 font-medium leading-relaxed mb-6">{event.desc}</p>
-                  <button className="text-blue-500 font-black text-sm uppercase tracking-widest hover:translate-x-2 transition-transform inline-flex items-center gap-2">
-                    Saiba mais →
+                <div className="p-12">
+                  <h3 className="text-3xl font-serif italic font-light text-white mb-6 group-hover:text-[#B89B72] transition-colors">{event.title}</h3>
+                  <p className="text-gray-400 font-light leading-relaxed mb-10 text-lg italic	">{event.desc}</p>
+                  <button className="text-white border-b border-white/20 pb-2 text-[10px] uppercase tracking-[0.4em] font-bold hover:border-[#B89B72] hover:text-[#B89B72] transition-all">
+                    Participar
                   </button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Prayer Request Section */}
-      <section id="prayer" className="py-24 px-4 bg-[#FDFCF8]">
-        <div className="max-w-5xl mx-auto vibrant-gradient p-12 md:p-20 rounded-[60px] shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <div className="grid grid-cols-10 h-full">
-              {Array.from({ length: 100 }).map((_, i) => (
-                <div key={i} className="border-r border-b border-white"></div>
-              ))}
+      <section id="prayer" className="py-32 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="w-20 h-20 bg-[#B89B72]/10 rounded-full flex items-center justify-center mx-auto mb-10">
+              <Heart className="text-[#B89B72] w-8 h-8 stroke-[1.5]" />
             </div>
+            <h2 className="text-5xl font-serif italic text-[#1A202C] mb-6">Pedidos de <span className="font-normal text-[#B89B72] not-italic">Invercessão</span></h2>
+            <p className="text-gray-400 font-light text-lg italic max-w-xl mx-auto">
+              Nossa equipe de oração quer caminhar com você. No silêncio do espírito, levemos seus anseios aos pés do Altíssimo.
+            </p>
           </div>
           
-          <div className="relative z-10 text-center text-white">
-            <h2 className="text-5xl md:text-6xl font-black mb-8 tracking-tight">Conte com <span className="underline decoration-white/30">Nossas</span> Orações</h2>
-            <p className="text-xl opacity-90 mb-12 font-medium max-w-2xl mx-auto">
-              Nossa equipe de intercessão está pronta para orar por você. Compartilhe seu desafio ou gratidão.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" placeholder="Seu Nome" className="bg-white p-5 rounded-2xl text-gray-900 focus:outline-none shadow-lg font-bold" />
-              <input type="email" placeholder="WhatsApp / E-mail" className="bg-white p-5 rounded-2xl text-gray-900 focus:outline-none shadow-lg font-bold" />
-              <textarea placeholder="Como podemos orar por você?" rows={3} className="md:col-span-2 bg-white p-5 rounded-2xl text-gray-900 focus:outline-none shadow-lg font-bold"></textarea>
-              <button className="md:col-span-2 bg-gray-900 text-white font-black py-5 rounded-2xl text-xl shadow-2xl hover:scale-[1.02] transition-transform active:scale-95">
-                Enviar para Intercessão
-              </button>
+          <form className="glass-panel p-12 md:p-16 rounded-[64px] soft-shadow border-white/50 space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <label className="text-[10px] uppercase tracking-[0.3em] font-black text-gray-400 ml-4">Como devemos lhe chamar?</label>
+                <input type="text" placeholder="Seu Nome" className="w-full bg-white/50 border border-black/5 rounded-3xl p-6 focus:outline-none focus:border-[#B89B72] transition-all font-light italic" />
+              </div>
+              <div className="space-y-4">
+                <label className="text-[10px] uppercase tracking-[0.3em] font-black text-gray-400 ml-4">Onde podemos lhe encontrar?</label>
+                <input type="text" placeholder="WhatsApp / E-mail" className="w-full bg-white/50 border border-black/5 rounded-3xl p-6 focus:outline-none focus:border-[#B89B72] transition-all font-light italic" />
+              </div>
+              <div className="space-y-4 md:col-span-2">
+                <label className="text-[10px] uppercase tracking-[0.3em] font-black text-gray-400 ml-4">Qual seu clamor ou gratidão?</label>
+                <textarea placeholder="..." rows={4} className="w-full bg-white/50 border border-black/5 rounded-3xl p-6 focus:outline-none focus:border-[#B89B72] transition-all font-light italic resize-none"></textarea>
+              </div>
             </div>
-          </div>
+            <button className="w-full bg-[#1A202C] text-white font-bold py-6 rounded-[32px] text-xs uppercase tracking-[0.4em] shadow-2xl hover:bg-[#B89B72] hover:-translate-y-1 transition-all active:translate-y-0">
+              Enviar Pedido
+            </button>
+          </form>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-12">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
-          <div className="lg:col-span-2">
-            <span className="text-blue-500 uppercase tracking-widest text-xs font-black mb-4 block">Fale Conosco</span>
-            <h2 className="text-5xl font-extrabold text-gray-900 mb-12 leading-tight">Portas sempre <span className="text-red-400">abertas</span></h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
-              <div className="space-y-6">
-                <div className="space-y-1">
-                  <span className="block text-xs uppercase font-black text-gray-400 tracking-[0.2em]">Endereço</span>
-                  <span className="text-lg font-bold text-gray-700">Av. Paraíba, 48 — Cidade Esperança, Natal - RN</span>
+      <section id="contact" className="py-32 px-6 relative">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-20">
+          <div className="lg:col-span-2 space-y-16">
+            <div>
+              <span className="text-[#B89B72] uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Conexão</span>
+              <h2 className="text-5xl font-serif font-light text-[#1A202C] leading-tight italic">Nossas portas estão <br /><span className="font-normal text-[#B89B72] not-italic">Sempre Abertas</span></h2>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-16">
+              <div className="space-y-12">
+                <div className="group">
+                  <span className="block text-[10px] uppercase font-black text-gray-400 tracking-[0.3em] mb-4">Lugar de Encontro</span>
+                  <span className="text-2xl font-serif italic font-light text-gray-700 leading-snug">Av. Paraíba, 48 — <br />Cidade Esperança, Natal - RN</span>
                 </div>
-                <div className="space-y-1">
-                  <span className="block text-xs uppercase font-black text-gray-400 tracking-[0.2em]">Telefone</span>
-                  <span className="text-lg font-bold text-gray-700">(84) 3205-2445</span>
+                <div className="group">
+                  <span className="block text-[10px] uppercase font-black text-gray-400 tracking-[0.3em] mb-4">Fala conosco</span>
+                  <span className="text-2xl font-serif italic font-light text-gray-700 leading-snug">(84) 3205-2445</span>
                 </div>
               </div>
-              <div className="space-y-6">
-                <div className="space-y-1">
-                  <span className="block text-xs uppercase font-black text-gray-400 tracking-[0.2em]">E-mail</span>
-                  <span className="text-lg font-bold text-gray-700">contato@igrejahaesperanca.com.br</span>
+              <div className="space-y-12">
+                <div className="group">
+                  <span className="block text-[10px] uppercase font-black text-gray-400 tracking-[0.3em] mb-4">Cartas Digitais</span>
+                  <span className="text-xl font-serif italic text-gray-700">contato@igrejahaesperanca.com.br</span>
                 </div>
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 border-2 border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 hover:text-blue-500 hover:border-blue-100 transition-all cursor-pointer">
-                    <Instagram size={20} />
-                  </div>
-                  <div className="w-12 h-12 border-2 border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 hover:text-blue-500 hover:border-blue-100 transition-all cursor-pointer">
-                    <Facebook size={20} />
-                  </div>
-                  <div className="w-12 h-12 border-2 border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 hover:text-blue-500 hover:border-blue-100 transition-all cursor-pointer">
-                    <Youtube size={20} />
-                  </div>
+                <div className="flex gap-6">
+                  {[Instagram, Facebook, Youtube].map((Icon, i) => (
+                    <div key={i} className="w-14 h-14 glass-panel rounded-full flex items-center justify-center text-gray-400 hover:text-[#B89B72] hover:border-[#B89B72]/50 transition-all cursor-pointer soft-shadow">
+                      <Icon size={20} className="stroke-[1.5]" />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="bg-white p-10 rounded-[48px] shadow-2xl border border-gray-50 flex flex-col justify-center items-center text-center">
-            <div className="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mb-6">
-              <div className="w-10 h-10 vibrant-gradient rounded-xl"></div>
+          <div className="glass-panel p-12 rounded-[64px] soft-shadow border-white/50 flex flex-col justify-center items-center text-center group bg-white/40">
+            <div className="w-24 h-24 bg-[#B89B72]/10 rounded-full flex items-center justify-center mb-8 soft-shadow group-hover:scale-110 transition-transform duration-500">
+              <Heart className="text-[#B89B72] w-8 h-8 fill-[#B89B72]/10" />
             </div>
-            <h3 className="text-2xl font-black mb-4">Contribua</h3>
-            <p className="text-gray-500 font-medium mb-8 leading-relaxed">Sua oferta ajuda a manter nossos ministérios e ações sociais ativos.</p>
-            <button className="text-blue-500 font-black underline underline-offset-8 text-lg">Dízimos & Ofertas (PIX)</button>
+            <h3 className="text-3xl font-serif italic font-light mb-6">Generosidade</h3>
+            <p className="text-gray-400 font-light leading-relaxed mb-10 italic">
+              "Honra ao Senhor com os teus bens..." <br /> Participe de nossa missão.
+            </p>
+            <button className="text-[#B89B72] font-black border-b border-[#B89B72]/20 pb-1 text-xs uppercase tracking-[0.4em] hover:border-[#B89B72] transition-all">Dízimos & Ofertas</button>
           </div>
 
-          <div className="lg:col-span-3 h-[500px] mt-8">
+          <div className="lg:col-span-3 h-[600px] mt-12 rounded-[80px] overflow-hidden soft-shadow border-8 border-white">
             <ChurchMap />
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="h-24 w-full px-12 border-t border-gray-100 flex items-center justify-between bg-white">
-        <div className="flex gap-2 items-center">
-          <div className="w-8 h-8 vibrant-gradient rounded-lg"></div>
-          <span className="font-black text-gray-900 tracking-tight">AD Cidade Esperança</span>
+      <footer className="py-20 px-6 border-t border-gray-100 bg-white/40 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="flex flex-col items-center md:items-start gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 vibrant-gradient rounded-full opacity-10"></div>
+              <span className="font-serif italic text-2xl font-light text-[#1A202C] tracking-tight">AD Cidade Esperança</span>
+            </div>
+            <span className="text-[10px] uppercase tracking-[0.5em] text-[#B89B72] font-bold ml-12">Cidade Natal - RN</span>
+          </div>
+          <div className="flex gap-12 text-[10px] uppercase font-black tracking-[0.4em] text-gray-300">
+            <span className="hover:text-[#B89B72] transition-colors cursor-pointer">Início</span>
+            <span className="hover:text-[#B89B72] transition-colors cursor-pointer">Fé</span>
+            <span className="hover:text-[#B89B72] transition-colors cursor-pointer">2026</span>
+          </div>
         </div>
-        <div className="hidden md:flex gap-8 text-xs font-black uppercase tracking-[0.2em] text-gray-400">
-          <span>© 2026</span>
-          <span className="text-blue-500">Cidade Viva</span>
-          <span>A Paz seja convosco</span>
+        <div className="max-w-7xl mx-auto mt-20 pt-10 border-t border-gray-100 text-center">
+          <p className="text-[9px] uppercase tracking-[0.6em] text-gray-400">© Feito com Amor & Revelação em Cidade Esperança</p>
         </div>
       </footer>
     </div>
