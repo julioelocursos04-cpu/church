@@ -58,8 +58,8 @@ export default function App() {
     { name: 'Sobre Nós', id: 'about' },
     { name: 'Cultos', id: 'schedule' },
     { name: 'Eventos', id: 'events' },
-    { name: 'Dízimos', id: 'donations' },
     { name: 'Oração', id: 'prayer' },
+    { name: 'Dízimos', id: 'donations' },
     { name: 'Contato', id: 'contact' },
   ];
 
@@ -242,57 +242,90 @@ export default function App() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-32 px-6 bg-white/50 backdrop-blur-sm relative">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row-reverse items-center gap-24">
-          <div className="flex-1">
-            <span className="text-brand-gold uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Nossa Essência</span>
-            <h2 className="text-5xl font-serif font-light mb-10 text-[#1A202C] leading-tight italic">Compromisso com a <br /><span className="font-normal text-brand-gold not-italic">Palavra & Vida</span></h2>
-            <div className="space-y-8 text-lg font-light text-gray-700 leading-relaxed">
-              <p>
-                A Assembleia de Deus em Cidade Esperança é mais que uma instituição; é uma família unida pelo desejo de manifestar o Reino de Deus em nossa comunidade.
+      <section id="about" className="py-32 px-6 relative overflow-hidden">
+        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-brand-gold/5 blur-[120px] -z-10 rounded-full"></div>
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
+          
+          {/* Left: Enhanced Graphic Composition */}
+          <div className="flex-1 w-full grid grid-cols-12 grid-rows-6 gap-4 aspect-square lg:aspect-[4/5]">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="col-span-8 row-span-4 rounded-[64px] overflow-hidden soft-shadow relative group"
+            >
+              <div className="absolute inset-0 bg-[#1A202C]/10 z-10"></div>
+              <img src="https://images.unsplash.com/photo-1544427928-c49bcdee84ba?auto=format&fit=crop&q=80&w=800" alt="Nossa Comunidade" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" />
+              <div className="absolute bottom-8 left-8 z-20">
+                <span className="text-[10px] uppercase tracking-[0.4em] text-white font-black opacity-60">Comunidade</span>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="col-span-4 row-span-3 rounded-[48px] bg-brand-gold/10 flex items-center justify-center p-8 text-center border border-brand-gold/20 soft-shadow"
+            >
+              <Quote className="text-brand-gold w-6 h-6 opacity-40 absolute top-6" />
+              <span className="text-brand-gold font-serif italic text-lg leading-tight mt-4">Fé que Transforma</span>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+              className="col-span-4 row-start-4 row-span-3 rounded-[48px] overflow-hidden soft-shadow relative group"
+            >
+              <img src="https://images.unsplash.com/photo-1490730141103-6ca3d7589d44?auto=format&fit=crop&q=80&w=600" alt="Momentos de Oração" className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" />
+              <div className="absolute inset-0 bg-brand-gold/20 mix-blend-overlay"></div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="col-span-8 row-span-2 rounded-[56px] glass-panel border-white/80 soft-shadow flex flex-col justify-center px-10"
+            >
+              <p className="text-brand-gold font-serif italic text-xl">"Aquele que começou a boa obra em vós a aperfeiçoará."</p>
+              <span className="text-[9px] uppercase tracking-widest text-gray-400 mt-4 font-bold">— Filipenses 1:6</span>
+            </motion.div>
+          </div>
+
+          {/* Right: Refined Content */}
+          <div className="flex-1 space-y-12">
+            <div>
+              <span className="text-brand-gold uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">Nossa Essência</span>
+              <h2 className="text-5xl md:text-6xl font-serif font-light text-[#1A202C] italic leading-tight mb-8">Compromisso com a <br /><span className="font-normal text-brand-gold not-italic">Palavra & Vida</span></h2>
+              <p className="text-xl text-gray-600 font-light leading-relaxed italic max-w-xl">
+                A Assembleia de Deus em Cidade Esperança é uma família unida pelo desejo de manifestar o Reino de Deus em nossa comunidade através do amor e da verdade.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-16 pt-10 border-t border-gray-100">
-                <div className="group">
-                  <div className="w-12 h-12 glass-panel rounded-full flex items-center justify-center mb-6 soft-shadow group-hover:bg-brand-gold/10 transition-colors" aria-hidden="true">
-                    <Heart className="text-brand-gold w-5 h-5" />
-                  </div>
-                  <h3 className="font-serif italic text-2xl text-[#1A202C] mb-3">Comunhão</h3>
-                  <p className="text-sm font-light">Cuidamos uns dos outros como Cristo nos ensinou.</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 pt-12 border-t border-gray-100/50">
+              <div className="space-y-6">
+                <div className="w-14 h-14 glass-panel rounded-2xl flex items-center justify-center soft-shadow bg-brand-gold/5" aria-hidden="true">
+                  <Heart className="text-brand-gold w-6 h-6 stroke-[1.5]" />
                 </div>
-                <div className="group">
-                  <div className="w-12 h-12 glass-panel rounded-full flex items-center justify-center mb-6 soft-shadow group-hover:bg-brand-gold/10 transition-colors" aria-hidden="true">
-                    <Quote className="text-brand-gold w-5 h-5" />
-                  </div>
-                  <h3 className="font-serif italic text-2xl text-[#1A202C] mb-3">Verdade</h3>
-                  <p className="text-sm font-light">Fundados na rocha imutável das Escrituras.</p>
+                <h3 className="text-2xl font-serif italic text-[#1A202C]">Comunhão</h3>
+                <p className="text-gray-500 font-light leading-relaxed text-sm">Cuidamos uns dos outros como Cristo nos ensinou, fortalecendo laços de fé e amizade.</p>
+              </div>
+              <div className="space-y-6">
+                <div className="w-14 h-14 glass-panel rounded-2xl flex items-center justify-center soft-shadow bg-brand-gold/5" aria-hidden="true">
+                  <Quote className="text-brand-gold w-6 h-6 stroke-[1.5]" />
                 </div>
+                <h3 className="text-2xl font-serif italic text-[#1A202C]">Verdade</h3>
+                <p className="text-gray-500 font-light leading-relaxed text-sm">Fundados na rocha imutável das Escrituras Sagradas para uma vida com propósito.</p>
               </div>
             </div>
-          </div>
-          <div className="flex-1 w-full grid grid-cols-2 gap-6 relative">
-            <div className="absolute inset-0 bg-[#B89B72]/5 rounded-[80px] blur-3xl -z-10 rotate-12"></div>
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="space-y-6"
-            >
-              <div className="aspect-[3/4] rounded-[48px] overflow-hidden soft-shadow">
-                <img src="https://images.unsplash.com/photo-1544427928-c49bcdee84ba?auto=format&fit=crop&q=80&w=400" alt="Comunidade" className="w-full h-full object-cover" />
-              </div>
-              <div className="aspect-square rounded-[48px] overflow-hidden soft-shadow bg-[#B89B72]/10 flex items-center justify-center p-10 text-center">
-                <span className="text-[#B89B72] font-serif italic text-xl">"Aquele que começou a boa obra..."</span>
-              </div>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: -50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="space-y-6 pt-12"
-            >
-              <div className="aspect-square rounded-[48px] overflow-hidden soft-shadow vibrant-gradient opacity-10"></div>
-              <div className="aspect-[3/4] rounded-[48px] overflow-hidden soft-shadow">
-                <img src="https://images.unsplash.com/photo-1490730141103-6ca3d7589d44?auto=format&fit=crop&q=80&w=400" alt="Oraçao" className="w-full h-full object-cover" />
-              </div>
-            </motion.div>
+            
+            <div className="pt-8">
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="bg-[#1A202C] text-white px-10 py-5 rounded-full font-bold shadow-xl hover:bg-brand-gold hover:-translate-y-1 transition-all active:translate-y-0 text-xs uppercase tracking-widest"
+              >
+                Visite-nos hoje
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -590,6 +623,26 @@ export default function App() {
             </div>
             <span className="text-[10px] uppercase tracking-[0.5em] text-[#B89B72] font-bold ml-12">Cidade Natal - RN</span>
           </div>
+          
+          <div className="flex items-center gap-6">
+            {[
+              { Icon: Instagram, label: 'Instagram', url: '#' },
+              { Icon: Facebook, label: 'Facebook', url: '#' },
+              { Icon: Youtube, label: 'Youtube', url: '#' }
+            ].map(({ Icon, label, url }, i) => (
+              <a 
+                key={i} 
+                href={url}
+                target="_blank"
+                rel="no-referrer"
+                className="w-10 h-10 glass-panel rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:border-brand-gold/50 transition-all cursor-pointer soft-shadow"
+                aria-label={`Seguir AD Cidade Esperança no ${label}`}
+              >
+                <Icon size={16} className="stroke-[1.5]" />
+              </a>
+            ))}
+          </div>
+
           <div className="flex gap-12 text-[10px] uppercase font-black tracking-[0.4em] text-gray-500">
             <button 
               onClick={() => scrollToSection('home')} 
