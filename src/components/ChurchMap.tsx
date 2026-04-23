@@ -15,14 +15,14 @@ const customMarkerIcon = L.divIcon({
 });
 
 export default function ChurchMap() {
-  // Coordinates for the church location (example: near Avenida Paulista, SP)
-  const position: [number, number] = [-23.5615, -46.6560];
+  // Coordinates for "Av. Paraíba, 48 - Cidade Esperança, Natal - RN"
+  const position: [number, number] = [-5.8242, -35.2505];
 
   return (
     <div className="w-full h-full rounded-[48px] overflow-hidden shadow-inner relative z-10 border border-gray-100">
       <MapContainer 
         center={position} 
-        zoom={15} 
+        zoom={16} 
         scrollWheelZoom={false}
         className="w-full h-full"
       >
@@ -33,8 +33,8 @@ export default function ChurchMap() {
         <Marker position={position} icon={customMarkerIcon}>
           <Popup className="church-popup">
             <div className="text-center p-2">
-              <h3 className="font-black text-gray-900 mb-1">Igreja Esperança</h3>
-              <p className="text-xs text-gray-500 font-medium">Rua das Oliveiras, 450</p>
+              <h3 className="font-black text-gray-900 mb-1">Assembleia de Deus</h3>
+              <p className="text-xs text-gray-500 font-medium">Av. Paraíba, 48 - Cidade Esperança</p>
               <div className="mt-2 text-[10px] text-blue-500 font-bold uppercase tracking-widest">
                 Portas Abertas
               </div>

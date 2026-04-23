@@ -73,7 +73,7 @@ export default function App() {
             <div className="w-10 h-10 vibrant-gradient rounded-xl flex items-center justify-center shadow-lg">
               <Church className="text-white w-6 h-6" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-gray-800">Igreja Esperança</span>
+            <span className="text-xl font-bold tracking-tight text-gray-800">AD Cidade Esperança</span>
           </div>
 
           {/* Desktop Nav */}
@@ -393,11 +393,11 @@ export default function App() {
               <div className="space-y-6">
                 <div className="space-y-1">
                   <span className="block text-xs uppercase font-black text-gray-400 tracking-[0.2em]">Endereço</span>
-                  <span className="text-lg font-bold text-gray-700">Rua das Oliveiras, 450 — São Paulo, SP</span>
+                  <span className="text-lg font-bold text-gray-700">Av. Paraíba, 48 — Cidade Esperança, Natal - RN</span>
                 </div>
                 <div className="space-y-1">
                   <span className="block text-xs uppercase font-black text-gray-400 tracking-[0.2em]">Telefone</span>
-                  <span className="text-lg font-bold text-gray-700">(11) 98765-4321</span>
+                  <span className="text-lg font-bold text-gray-700">(84) 3205-2445</span>
                 </div>
               </div>
               <div className="space-y-6">
@@ -439,7 +439,7 @@ export default function App() {
       <footer className="h-24 w-full px-12 border-t border-gray-100 flex items-center justify-between bg-white">
         <div className="flex gap-2 items-center">
           <div className="w-8 h-8 vibrant-gradient rounded-lg"></div>
-          <span className="font-black text-gray-900 tracking-tight">Igreja Esperança</span>
+          <span className="font-black text-gray-900 tracking-tight">AD Cidade Esperança</span>
         </div>
         <div className="hidden md:flex gap-8 text-xs font-black uppercase tracking-[0.2em] text-gray-400">
           <span>© 2026</span>
