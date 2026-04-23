@@ -389,13 +389,13 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {[
               { 
-                date: '15 MAI', 
+                date: '15 de Maio', 
                 title: 'Conferência de Família', 
                 desc: 'Um tempo precioso de restauração e cura para todos os lares.',
                 img: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=800'
               },
               { 
-                date: '02 JUN', 
+                date: '02 de Junho', 
                 title: 'Impacto Missionário', 
                 desc: 'Manifestando a luz de Cristo através de ações de serviço e amor.',
                 img: 'https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&q=80&w=800'
@@ -413,7 +413,7 @@ export default function App() {
                   </div>
                 </div>
                 <div className="p-12">
-                  <h3 className="text-3xl font-serif italic font-light text-white mb-6 group-hover:text-brand-gold transition-colors">{event.title}</h3>
+                  <h3 className="text-3xl font-serif italic font-bold text-white mb-6 group-hover:text-brand-gold transition-colors">{event.title}</h3>
                   <p className="text-gray-400 font-light leading-relaxed mb-10 text-lg italic	">{event.desc}</p>
                   <button 
                     className="text-white border-b border-white/20 pb-2 text-[10px] uppercase tracking-[0.4em] font-bold hover:border-brand-gold hover:text-brand-gold transition-all"
